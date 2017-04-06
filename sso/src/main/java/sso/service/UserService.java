@@ -1,0 +1,22 @@
+package sso.service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import common.utils.TaotaoResult;
+import po.TbUser;
+
+public interface UserService {
+	
+	TaotaoResult checkData(String content, Integer type);
+	TaotaoResult createUser(TbUser user);
+	TaotaoResult userLogin(String username, String password, HttpServletRequest request, HttpServletResponse response);
+
+	TaotaoResult getUserByToken(String token);
+	
+	/*
+	 * 
+	 * 退出登录
+	 */
+	TaotaoResult userLogout(String token);
+}
