@@ -37,33 +37,33 @@ public class JedisTest {
 	
 	
 	//集群
-	@Test
-	public void tese3(){
-		HashSet<HostAndPort> nodeSet=new HashSet<>();
-		nodeSet.add(new HostAndPort("139.199.158.214",7001));
-		nodeSet.add(new HostAndPort("139.199.158.214",7002));
-		nodeSet.add(new HostAndPort("139.199.158.214",7003));
-		nodeSet.add(new HostAndPort("139.199.158.214",7004));
-		nodeSet.add(new HostAndPort("139.199.158.214",7005));
-		nodeSet.add(new HostAndPort("139.199.158.214",7006));
-		
-		JedisCluster  cluster=new JedisCluster(nodeSet);
-		cluster.set("key1", "1000");
-		String string=cluster.get("key1");
-		System.out.println(string);
-		cluster.close();
-			
-	}
+//	@Test
+//	public void tese3(){
+//		HashSet<HostAndPort> nodeSet=new HashSet<>();
+//		nodeSet.add(new HostAndPort("139.199.158.214",7001));
+//		nodeSet.add(new HostAndPort("139.199.158.214",7002));
+//		nodeSet.add(new HostAndPort("139.199.158.214",7003));
+//		nodeSet.add(new HostAndPort("139.199.158.214",7004));
+//		nodeSet.add(new HostAndPort("139.199.158.214",7005));
+//		nodeSet.add(new HostAndPort("139.199.158.214",7006));
+//
+//		JedisCluster  cluster=new JedisCluster(nodeSet);
+//		cluster.set("key1", "1000");
+//		String string=cluster.get("key1");
+//		System.out.println(string);
+//		cluster.close();
+//
+//	}
 	
 	
-	@Test
-	public void test4(){
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
-		JedisCluster jedisCluster =  (JedisCluster) applicationContext.getBean("redisClient");
-		String string = jedisCluster.get("key1");
-		System.out.println(string);
-		jedisCluster.close();
-	}
+//	@Test
+//	public void test4(){
+//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
+//		JedisCluster jedisCluster =  (JedisCluster) applicationContext.getBean("redisClient");
+//		String string = jedisCluster.get("key1");
+//		System.out.println(string);
+//		jedisCluster.close();
+//	}
 	
 	
 

@@ -4,6 +4,8 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/manager" />
+    <file type="web" url="file://$PROJECT_DIR$/order" />
     <file type="web" url="file://$PROJECT_DIR$/portal" />
     <file type="web" url="file://$PROJECT_DIR$/rest" />
     <file type="web" url="file://$PROJECT_DIR$/search" />
@@ -117,8 +119,5 @@
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="GBK" />
     <option name="myConnectionType" value="NONE" />
-  </component>
-  <component name="SvnConfiguration" myUseAcceleration="nothing">
-    <configuration useDefault="false">C:\Users\Kevin\AppData\Roaming\Subversion</configuration>
   </component>
 </project>
