@@ -34,7 +34,6 @@ public class PageHelperTest {
 		PageInfo<TbItem> pageInfo=new PageInfo<>(list);
 		long total=pageInfo.getTotal();
 		System.out.println("共有商品"+total);
-		
 	}
 
 }

@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="cn.tf.taotao.portal.controller"/>
+	<context:component-scan base-package="portal.controller"/>
 	<mvc:annotation-driven/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,7 +19,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/order/**"/>
-			<bean class="cn.tf.taotao.portal.interceptor.LoginInterceptor"></bean>
+			<bean class="portal.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.tf.taotao.mapper.TbAdminUserMapper" >
-  <resultMap id="BaseResultMap" type="cn.tf.taotao.po.TbAdminUser" >
+<mapper namespace="mapper.TbItemCatMapper" >
+  <resultMap id="BaseResultMap" type="po.TbItemCat" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+    <result column="is_parent" property="isParent" jdbcType="BIT" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -69,15 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, phone, email, created, updated
+    id, parent_id, name, status, sort_order, is_parent, created, updated
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.tf.taotao.po.TbAdminUserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.TbItemCatExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_admin_user
+    from tb_item_cat
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,44 +89,47 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from tb_admin_user
+    from tb_item_cat
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from tb_admin_user
+    delete from tb_item_cat
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.tf.taotao.po.TbAdminUserExample" >
-    delete from tb_admin_user
+  <delete id="deleteByExample" parameterType="po.TbItemCatExample" >
+    delete from tb_item_cat
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.tf.taotao.po.TbAdminUser" >
-    insert into tb_admin_user (id, username, password, 
-      phone, email, created, 
-      updated)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
-      #{updated,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="po.TbItemCat" >
+    insert into tb_item_cat (id, parent_id, name, 
+      status, sort_order, is_parent, 
+      created, updated)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.tf.taotao.po.TbAdminUser" >
-    insert into tb_admin_user
+  <insert id="insertSelective" parameterType="po.TbItemCat" >
+    insert into tb_item_cat
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="parentId != null" >
+        parent_id,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="phone != null" >
-        phone,
+      <if test="status != null" >
+        status,
       </if>
-      <if test="email != null" >
-        email,
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="isParent != null" >
+        is_parent,
       </if>
       <if test="created != null" >
         created,
@@ -138,17 +142,20 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isParent != null" >
+        #{isParent,jdbcType=BIT},
       </if>
       <if test="created != null" >
         #{created,jdbcType=TIMESTAMP},
@@ -158,29 +165,32 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.tf.taotao.po.TbAdminUserExample" resultType="java.lang.Integer" >
-    select count(*) from tb_admin_user
+  <select id="countByExample" parameterType="po.TbItemCatExample" resultType="java.lang.Integer" >
+    select count(*) from tb_item_cat
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_admin_user
+    update tb_item_cat
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
+      <if test="record.sortOrder != null" >
+        sort_order = #{record.sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.isParent != null" >
+        is_parent = #{record.isParent,jdbcType=BIT},
       </if>
       <if test="record.created != null" >
         created = #{record.created,jdbcType=TIMESTAMP},
@@ -194,32 +204,36 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_admin_user
+    update tb_item_cat
     set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      sort_order = #{record.sortOrder,jdbcType=INTEGER},
+      is_parent = #{record.isParent,jdbcType=BIT},
       created = #{record.created,jdbcType=TIMESTAMP},
       updated = #{record.updated,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.tf.taotao.po.TbAdminUser" >
-    update tb_admin_user
+  <update id="updateByPrimaryKeySelective" parameterType="po.TbItemCat" >
+    update tb_item_cat
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isParent != null" >
+        is_parent = #{isParent,jdbcType=BIT},
       </if>
       <if test="created != null" >
         created = #{created,jdbcType=TIMESTAMP},
@@ -230,12 +244,13 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.tf.taotao.po.TbAdminUser" >
-    update tb_admin_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="po.TbItemCat" >
+    update tb_item_cat
+    set parent_id = #{parentId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      is_parent = #{isParent,jdbcType=BIT},
       created = #{created,jdbcType=TIMESTAMP},
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

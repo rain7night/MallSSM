@@ -11,6 +11,6 @@
 	<context:property-placeholder location="classpath:resource/*.properties"/>
 	
 
-	<context:component-scan  base-package="cn.tf.taotao.portal.service" />
+	<context:component-scan  base-package="portal.service" />
 
 </beans>
