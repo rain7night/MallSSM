@@ -1,7 +1,7 @@
 package service;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbItem;
 import po.TbItemDesc;
 import po.TbItemParamItem;
@@ -11,9 +11,9 @@ public interface  ItemService {
 
 	EUDResult getItemList(int page, int rows);
 	
-	TaotaoResult createItem(TbItem item, String desc, String itemparam) throws Exception;
+	MallResult createItem(TbItem item, String desc, String itemparam) throws Exception;
 
-	TaotaoResult deleteItem(String ids);
+	MallResult deleteItem(String ids);
 
 	TbItemDesc listItemDesc(Long id);
 
@@ -26,7 +26,7 @@ public interface  ItemService {
 	 * @return
 	 */
 	
-	TaotaoResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParamss);
+	MallResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParamss);
 
 	/**
 	 * 
@@ -34,8 +34,8 @@ public interface  ItemService {
 	 * @param ids
 	 * @return
 	 */
-	TaotaoResult instockItem(String ids);
+	MallResult instockItem(String ids);
 
 	//上架
-	TaotaoResult reshelfItem(String ids);
+	MallResult reshelfItem(String ids);
 }

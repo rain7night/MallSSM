@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 
 import common.utils.HttpClientUtil;
 import common.utils.JsonUtils;
-import common.utils.TaotaoResult;
-import po.TbItem;
+import common.utils.MallResult;
 import po.TbItemDesc;
 import po.TbItemParamItem;
-import portal.pojo.Item;
 import portal.pojo.ItemInfo;
 import portal.service.ItemService;
 
@@ -42,9 +40,9 @@ public class ItemServiceImpl implements ItemService{
 		try {
 			String json=HttpClientUtil.doGet(REST_BASE_URL+ITEM_INFO_URL+itemId);
 			if(!StringUtils.isBlank(json)){
-				TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, ItemInfo.class);
-				if(taotaoResult.getStatus()==200){
-					ItemInfo item =(ItemInfo) taotaoResult.getData();
+				MallResult mallResult = MallResult.formatToPojo(json, ItemInfo.class);
+				if(mallResult.getStatus()==200){
+					ItemInfo item =(ItemInfo) mallResult.getData();
 					return item;	
 				}
 			}
@@ -61,10 +59,10 @@ public class ItemServiceImpl implements ItemService{
 		
 		try {
 			String json=HttpClientUtil.doGet(REST_BASE_URL+ITEM_DESC_URL+itemId);
-			TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbItemDesc.class);
+			MallResult mallResult = MallResult.formatToPojo(json, TbItemDesc.class);
 			
-			if(taotaoResult.getStatus()==200){
-				TbItemDesc itemDesc = (TbItemDesc) taotaoResult.getData();
+			if(mallResult.getStatus()==200){
+				TbItemDesc itemDesc = (TbItemDesc) mallResult.getData();
 				String result=itemDesc.getItemDesc();
 				return result;
 			}
@@ -82,10 +80,10 @@ public class ItemServiceImpl implements ItemService{
 		
 		try {
 			String json=HttpClientUtil.doGet(REST_BASE_URL+ITEM_PARAM_URL+itemId);
-			TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbItemParamItem.class);
+			MallResult mallResult = MallResult.formatToPojo(json, TbItemParamItem.class);
 			
-			if(taotaoResult.getStatus()==200){
-				TbItemParamItem itemParamItem = (TbItemParamItem) taotaoResult.getData();
+			if(mallResult.getStatus()==200){
+				TbItemParamItem itemParamItem = (TbItemParamItem) mallResult.getData();
 				String paramData=itemParamItem.getParamData();
 				
 				//生成html

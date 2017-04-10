@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import portal.service.ContentService;
 
 
@@ -30,10 +30,10 @@ public class IndexController {
 	//模拟post请求
 	@RequestMapping(value="/httpclient/post",method=RequestMethod.POST,produces=MediaType.TEXT_PLAIN_VALUE+";charset=utf-8")
 	@ResponseBody
-	public TaotaoResult  tesePost(String username,String password){
+	public MallResult tesePost(String username, String password){
 		String result=username+"_"+password;
 		System.out.println(result);
-		return TaotaoResult.ok(result);
+		return MallResult.ok(result);
 	}
 	
 	

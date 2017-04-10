@@ -3,15 +3,14 @@ package sso.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbAdminUser;
-import po.TbUser;
 
 public interface AdminService {
 	
-	TaotaoResult checkData(String content, Integer type);
-	TaotaoResult createUser(TbAdminUser user);
-	TaotaoResult userLogin(String username, String password, HttpServletRequest request, HttpServletResponse response);
+	MallResult checkData(String content, Integer type);
+	MallResult createUser(TbAdminUser user);
+	MallResult userLogin(String username, String password, HttpServletRequest request, HttpServletResponse response);
 
-	TaotaoResult getUserByToken(String token);
+	MallResult getUserByToken(String token);
 }

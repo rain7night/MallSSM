@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
 import portal.pojo.CartItem;
 import portal.pojo.Order;
 import portal.service.CartService;

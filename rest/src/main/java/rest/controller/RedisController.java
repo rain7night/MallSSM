@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import rest.service.RedisService;
 
 @Controller
@@ -18,8 +18,8 @@ public class RedisController {
 	
 	@RequestMapping("/content/{contentCid}")
 	@ResponseBody
-	public TaotaoResult  contentCacheSync(@PathVariable Long contentCid){
-		TaotaoResult  result=redisService.syncContent(contentCid);
+	public MallResult contentCacheSync(@PathVariable Long contentCid){
+		MallResult result=redisService.syncContent(contentCid);
 		return result;
 	}
 	

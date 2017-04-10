@@ -1,7 +1,7 @@
 package controller;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,8 @@ public class ContentController {
 	
 	@RequestMapping("/content/save")
 	@ResponseBody
-	public TaotaoResult insertContent(TbContent content){
-		TaotaoResult result = contentService.insertContent(content);
+	public MallResult insertContent(TbContent content){
+		MallResult result = contentService.insertContent(content);
 		return result;
 	}
 	
@@ -34,15 +34,15 @@ public class ContentController {
 	//删除
 	@RequestMapping("/content/delete")
 	@ResponseBody
-	public TaotaoResult deleteContent(String ids){
+	public MallResult deleteContent(String ids){
 		return contentService.deleteContent(ids);
 	}
 	
 	//更新
 	@RequestMapping("/rest/content/edit")
 	@ResponseBody
-	public TaotaoResult updateItem(TbContent content){
-		TaotaoResult result=contentService.updateContent(content);
+	public MallResult updateItem(TbContent content){
+		MallResult result=contentService.updateContent(content);
 		return result;
 	}
 

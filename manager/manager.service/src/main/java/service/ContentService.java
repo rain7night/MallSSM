@@ -1,7 +1,7 @@
 package service;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbContent;
 
 public interface ContentService {
@@ -11,7 +11,7 @@ public interface ContentService {
 	 * @param content
 	 * @return
 	 */
-	TaotaoResult insertContent(TbContent content);
+	MallResult insertContent(TbContent content);
 
 	/**
 	 * 列表
@@ -26,7 +26,7 @@ public interface ContentService {
 	 * @param ids
 	 * @return
 	 */
-	TaotaoResult deleteContent(String ids);
+	MallResult deleteContent(String ids);
 
 	/**
 	 * 更新操作
@@ -34,7 +34,7 @@ public interface ContentService {
 	 * @param content
 	 * @return
 	 */
-	TaotaoResult updateContent(TbContent content);
+	MallResult updateContent(TbContent content);
 
 
 

@@ -1,7 +1,7 @@
 package service.impl;
 
 import common.pojo.ContentCatTreeNode;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbContentCategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class ContentCategoryServiceImpl implements  ContentCategoryService{
 	
 
 	@Override
-	public TaotaoResult insertContentCategory(long parentId, String name) {
+	public MallResult insertContentCategory(long parentId, String name) {
 		
 		TbContentCategory  contentCategory=new TbContentCategory();
 		contentCategory.setName(name);
@@ -61,12 +61,12 @@ public class ContentCategoryServiceImpl implements  ContentCategoryService{
 			parentCat.setIsParent(true);
 			contentCategoryMapper.updateByPrimaryKey(parentCat);
 		}
-		return TaotaoResult.ok(contentCategory);
+		return MallResult.ok(contentCategory);
 	}
 
 	//删除节点
 	@Override
-	public TaotaoResult deleteContentCategory(Long parentId, Long id) {
+	public MallResult deleteContentCategory(Long parentId, Long id) {
 		
 		contentCategoryMapper.deleteByPrimaryKey(id);
 		// 判断父节点下是否还有子节点
@@ -84,13 +84,13 @@ public class ContentCategoryServiceImpl implements  ContentCategoryService{
 		} else {
 			parentCat.setIsParent(false);
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 
 	//更新
 	@Override
-	public TaotaoResult updateContentCategory(Long id, String name) {
+	public MallResult updateContentCategory(Long id, String name) {
 		TbContentCategory tcc = contentCategoryMapper.selectByPrimaryKey(id);
 		
 		TbContentCategory  contentCategory=new TbContentCategory();
@@ -104,7 +104,7 @@ public class ContentCategoryServiceImpl implements  ContentCategoryService{
 		contentCategory.setUpdated(new Date());
 		
 		contentCategoryMapper.updateByPrimaryKey(contentCategory);
-		return TaotaoResult.ok();
+		return MallResult.ok();
 		
 		
 	}

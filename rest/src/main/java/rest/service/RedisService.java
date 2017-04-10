@@ -1,9 +1,9 @@
 package rest.service;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 
 public interface RedisService {
 	//
-	TaotaoResult syncContent(long contentCid);
+	MallResult syncContent(long contentCid);
 
 }

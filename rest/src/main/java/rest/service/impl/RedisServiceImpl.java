@@ -5,11 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import rest.dao.JedisClient;
 import rest.service.RedisService;
-
-import redis.clients.jedis.JedisCluster;
 
 @Service
 public class RedisServiceImpl implements RedisService{
@@ -21,14 +19,14 @@ public class RedisServiceImpl implements RedisService{
 	private String INDEX_CONTENT_REDIS_KEY;
 	
 	@Override
-	public TaotaoResult syncContent(long contentCid) {
+	public MallResult syncContent(long contentCid) {
 		try {
 			jedisClient.hdel(INDEX_CONTENT_REDIS_KEY, contentCid+"");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 }

@@ -1,7 +1,7 @@
 package controller;
 
 import common.pojo.ContentCatTreeNode;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,24 +30,24 @@ public class ContentCategoryController {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public TaotaoResult creatContentCatgory(Long parentId,String name){
-		TaotaoResult result = contentCategoryService.insertContentCategory(parentId, name);
+	public MallResult creatContentCatgory(Long parentId, String name){
+		MallResult result = contentCategoryService.insertContentCategory(parentId, name);
 		return result;
 	}
 	
 	//删除节点
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult  deleteContentCatgory(Long parentId, Long id){
+	public MallResult deleteContentCatgory(Long parentId, Long id){
 		
-		TaotaoResult result = contentCategoryService.deleteContentCategory(parentId, id);
+		MallResult result = contentCategoryService.deleteContentCategory(parentId, id);
 		return result;
 	}
 	
 	//更新节点
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult updateContentCategory(Long id, String name) {
+	public MallResult updateContentCategory(Long id, String name) {
 		return contentCategoryService.updateContentCategory(id, name);
 	}
 	

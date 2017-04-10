@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import common.utils.HttpClientUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import portal.pojo.SearchResult;
 import portal.service.SearchService;
 
@@ -31,7 +31,7 @@ public class SearchServiceImpl implements  SearchService{
 			String json=HttpClientUtil.doGet(SEARCH_BASE_URL,param);
 			
 			//把字符串转换
-			TaotaoResult  result=TaotaoResult.formatToPojo(json, SearchResult.class);
+			MallResult result= MallResult.formatToPojo(json, SearchResult.class);
 		
 			if(result.getStatus()==200){
 				SearchResult searchResult=(SearchResult) result.getData();

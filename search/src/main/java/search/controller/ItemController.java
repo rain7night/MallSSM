@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import search.service.ItemService;
 
 @Controller
@@ -21,8 +20,8 @@ public class ItemController {
 	 */
 	@RequestMapping("/importAll")
 	@ResponseBody
-	public TaotaoResult importAllItems() {
-		TaotaoResult result = itemService.importAllItems();
+	public MallResult importAllItems() {
+		MallResult result = itemService.importAllItems();
 		return result;
 	}
 }

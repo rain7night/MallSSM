@@ -16,7 +16,7 @@ public class JedisTest {
 	public void tets1(){
 		//创建一个jedis的对象
 		//调用jedis对象的方法，方法名称和redis的命令一样
-		Jedis jedis=new Jedis("139.199.158.214",6379);
+		Jedis jedis=new Jedis("192.168.186.128",6379);
 		jedis.set("key1", "jedis test");
 		String string=jedis.get("key1");
 		System.out.println(string);

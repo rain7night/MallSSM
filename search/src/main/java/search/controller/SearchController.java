@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import search.pojo.SearchResult;
 import search.service.SearchService;
 
@@ -23,12 +23,12 @@ public class SearchController {
 	
 	@RequestMapping(value="/query",method=RequestMethod.GET)
 	@ResponseBody
-	public TaotaoResult  search(@RequestParam("q") String queryString,
-			@RequestParam(defaultValue="1")Integer page,
-			@RequestParam(defaultValue="40")Integer rows){
+	public MallResult search(@RequestParam("q") String queryString,
+                             @RequestParam(defaultValue="1")Integer page,
+                             @RequestParam(defaultValue="40")Integer rows){
 		
 		if(StringUtils.isBlank(queryString)){
-			return TaotaoResult.build(400, "查询条件不能为空");
+			return MallResult.build(400, "查询条件不能为空");
 		}
 		
 		SearchResult searchResult=null;
@@ -38,9 +38,9 @@ public class SearchController {
 			searchResult = searchService.search(queryString, page, rows);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
-		return TaotaoResult.ok(searchResult);
+		return MallResult.ok(searchResult);
 	}
 
 }

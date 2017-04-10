@@ -1,9 +1,9 @@
 package search.service;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 
 public interface ItemService {
 	
-	TaotaoResult importAllItems();
+	MallResult importAllItems();
 
 }

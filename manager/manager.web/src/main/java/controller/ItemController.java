@@ -1,7 +1,7 @@
 package controller;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +41,8 @@ public class ItemController {
 	//接收表单中的内容，使用一个pojo接收表单内容
 	@RequestMapping(value="/item/save",method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult createItem(TbItem item,String desc,String itemParams) throws Exception{
-		TaotaoResult result=itemService.createItem(item,desc,itemParams);
+	public MallResult createItem(TbItem item, String desc, String itemParams) throws Exception{
+		MallResult result=itemService.createItem(item,desc,itemParams);
 		return result;
 	}
 	
@@ -50,7 +50,7 @@ public class ItemController {
 	//删除商品
 	@RequestMapping("/rest/item/delete")
 	@ResponseBody
-	public TaotaoResult  deleteItem(String ids){
+	public MallResult deleteItem(String ids){
 		return itemService.deleteItem(ids);
 		
 	}
@@ -65,22 +65,22 @@ public class ItemController {
 	//更新
 	@RequestMapping(value="/rest/item/update",method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParams){
-		TaotaoResult result=itemService.updateItem(item,desc,itemParams);
+	public MallResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParams){
+		MallResult result=itemService.updateItem(item,desc,itemParams);
 		return result;
 	}
 	
 	//下架
 	@RequestMapping("/rest/item/instock")
 	@ResponseBody
-	public TaotaoResult  instockItem(String ids){
+	public MallResult instockItem(String ids){
 		return itemService.instockItem(ids);
 	}
 	
 	//上架
 	@RequestMapping("/rest/item/reshelf")
 	@ResponseBody
-	public TaotaoResult  reshelfItem(String ids){
+	public MallResult reshelfItem(String ids){
 		return itemService.reshelfItem(ids);	
 	}
 

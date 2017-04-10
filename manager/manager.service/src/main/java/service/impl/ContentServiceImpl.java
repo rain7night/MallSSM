@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import common.pojo.EUDResult;
 import common.utils.ExceptionUtil;
 import common.utils.HttpClientUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbContentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +32,7 @@ public class ContentServiceImpl implements ContentService {
 	private  String REST_CONTENT_SYNC_URL;
 	
 	@Override
-	public TaotaoResult insertContent(TbContent content) {
+	public MallResult insertContent(TbContent content) {
 		
 		content.setCreated(new Date());
 		content.setUpdated(new Date());
@@ -44,7 +44,7 @@ public class ContentServiceImpl implements ContentService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 	//分页列表显示
@@ -65,7 +65,7 @@ public class ContentServiceImpl implements ContentService {
 
 	//删除
 	@Override
-	public TaotaoResult deleteContent(String ids) {
+	public MallResult deleteContent(String ids) {
 		try {
 			String[] idsArray = ids.split(",");
 			List<Long> values = new ArrayList<Long>();
@@ -82,12 +82,12 @@ public class ContentServiceImpl implements ContentService {
 			e.printStackTrace();
 			return null;
 		}
-		return TaotaoResult.ok(); 
+		return MallResult.ok();
 	}
 
 	//修改
 	@Override
-	public TaotaoResult updateContent(TbContent content) {
+	public MallResult updateContent(TbContent content) {
 		
 		try {
 			//更新商品
@@ -110,9 +110,9 @@ public class ContentServiceImpl implements ContentService {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 		
 	}
 

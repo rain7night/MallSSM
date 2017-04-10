@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import common.pojo.EUDResult;
 import common.utils.ExceptionUtil;
 import common.utils.IDUtils;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbItemDescMapper;
 import mapper.TbItemMapper;
 import mapper.TbItemParamItemMapper;
@@ -70,7 +70,7 @@ public class ItemServiceImpl implements ItemService{
 
 
 	@Override
-	public TaotaoResult createItem(TbItem item,String desc,String itemparam) throws Exception {
+	public MallResult createItem(TbItem item, String desc, String itemparam) throws Exception {
 		//生成商品id
 		Long itemId=IDUtils.genItemId();
 		item.setId(itemId);
@@ -79,7 +79,7 @@ public class ItemServiceImpl implements ItemService{
 		item.setUpdated(new Date());
 		itemMapper.insert(item);
 		//添加商品描述
-		TaotaoResult result=insertItemDesc(itemId, desc);
+		MallResult result=insertItemDesc(itemId, desc);
 		if(result.getStatus()!=200){
 			throw new Exception();
 		}
@@ -88,10 +88,10 @@ public class ItemServiceImpl implements ItemService{
 		if(result.getStatus()!=200){
 			throw new Exception();
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
-	private TaotaoResult insertItemDesc(Long itemId,String desc){
+	private MallResult insertItemDesc(Long itemId, String desc){
 		
 		TbItemDesc itemDesc=new TbItemDesc();
 		itemDesc.setItemId(itemId);
@@ -100,12 +100,12 @@ public class ItemServiceImpl implements ItemService{
 		itemDesc.setUpdated(new Date());
 		
 		itemDescMapper.insert(itemDesc);
-		return TaotaoResult.ok();
+		return MallResult.ok();
 				
 	}
 	
 	//添加规格参数
-	private TaotaoResult insertItemParamItem(Long itemId,String itemparam){
+	private MallResult insertItemParamItem(Long itemId, String itemparam){
 		TbItemParamItem  itemParamItem=new TbItemParamItem();
 		itemParamItem.setCreated(new Date());
 		itemParamItem.setItemId(itemId);
@@ -113,7 +113,7 @@ public class ItemServiceImpl implements ItemService{
 		itemParamItem.setUpdated(new Date());
 		
 		itemParamItemMapper.insert(itemParamItem);
-		return TaotaoResult.ok();
+		return MallResult.ok();
 		
 	}
 
@@ -121,7 +121,7 @@ public class ItemServiceImpl implements ItemService{
 
 	//删除商品
 	@Override
-	public TaotaoResult deleteItem(String ids) {
+	public MallResult deleteItem(String ids) {
 		try {
 			String[] idsArray = ids.split(",");
 			List<Long> values = new ArrayList<Long>();
@@ -138,7 +138,7 @@ public class ItemServiceImpl implements ItemService{
 				item.setStatus((byte)3);
 				itemMapper.updateByExample(item, e);
 			}
-			return TaotaoResult.ok();
+			return MallResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -178,7 +178,7 @@ public class ItemServiceImpl implements ItemService{
 
 	//更新
 	@Override
-	public TaotaoResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParams) {
+	public MallResult updateItem(TbItem item, TbItemDesc desc, TbItemParamItem itemParams) {
 		try {
 			//更新商品
 			TbItemExample e = new TbItemExample();
@@ -211,16 +211,16 @@ public class ItemServiceImpl implements ItemService{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 		
 	}
 
 
 	//下架商品
 	@Override
-	public TaotaoResult instockItem(String ids) {
+	public MallResult instockItem(String ids) {
 		
 		try {
 			String[] idsArray = ids.split(",");
@@ -238,7 +238,7 @@ public class ItemServiceImpl implements ItemService{
 				item.setStatus((byte)2);
 				itemMapper.updateByExample(item, e);
 			}
-			return TaotaoResult.ok();
+			return MallResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -249,7 +249,7 @@ public class ItemServiceImpl implements ItemService{
 
 
 	@Override
-	public TaotaoResult reshelfItem(String ids) {
+	public MallResult reshelfItem(String ids) {
 		try {
 			String[] idsArray = ids.split(",");
 			List<Long> values = new ArrayList<Long>();
@@ -265,7 +265,7 @@ public class ItemServiceImpl implements ItemService{
 				item.setStatus((byte)1);
 				itemMapper.updateByExample(item, e);
 			}
-			return TaotaoResult.ok();
+			return MallResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

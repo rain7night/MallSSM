@@ -1,7 +1,7 @@
 package controller;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +23,8 @@ public class ItemParamController {
 	
 	@RequestMapping("/query/itemcatid/{itemCatId}")
 	@ResponseBody
-	public TaotaoResult getItemParamByCid(@PathVariable Long itemCatId){
-		TaotaoResult  result=itemParamService.getItemParamByCid(itemCatId);
+	public MallResult getItemParamByCid(@PathVariable Long itemCatId){
+		MallResult result=itemParamService.getItemParamByCid(itemCatId);
 		return result;
 	}
 	
@@ -32,11 +32,11 @@ public class ItemParamController {
 	//接收cid，规格参数模板
 	@RequestMapping("/save/{cid}")
 	@ResponseBody
-	public TaotaoResult inserTaotaoResult(@PathVariable Long cid,String paramData){
+	public MallResult inserTaotaoResult(@PathVariable Long cid, String paramData){
 		TbItemParam itemParam=new TbItemParam();
 		itemParam.setItemCatId(cid);
 		itemParam.setParamData(paramData);
-		TaotaoResult result = itemParamService.insertItemParam(itemParam);
+		MallResult result = itemParamService.insertItemParam(itemParam);
 		return result;
 	}
 	
@@ -59,7 +59,7 @@ public class ItemParamController {
 	//删除商品规格参数模板
 	@RequestMapping("/delete")
 	@ResponseBody
-	public TaotaoResult  deleteParam(String ids){
+	public MallResult deleteParam(String ids){
 		return itemParamService.deleteParam(ids);
 		
 	}

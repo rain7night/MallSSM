@@ -3,7 +3,7 @@ package service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbItemCatMapper;
 import mapper.TbItemMapper;
 import mapper.TbItemParamItemMapper;
@@ -34,28 +34,28 @@ public class ItemParamServiceImpl implements ItemParamService{
 	
 	
 	@Override
-	public TaotaoResult getItemParamByCid(long cid) {
+	public MallResult getItemParamByCid(long cid) {
 		TbItemParamExample example=new TbItemParamExample();
 		Criteria  criteria=example.createCriteria();
 		criteria.andItemCatIdEqualTo(cid);
 		List<TbItemParam> list = itemParamMapper.selectByExampleWithBLOBs(example);
 		//判断是否查询到结果
 		if(list!=null && list.size()>0){
-			return TaotaoResult.ok(list.get(0));
+			return MallResult.ok(list.get(0));
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 
 	//规格参数模板
 	@Override
-	public TaotaoResult insertItemParam(TbItemParam itemParam) {
+	public MallResult insertItemParam(TbItemParam itemParam) {
 		itemParam.setCreated(new Date());
 		itemParam.setUpdated(new Date());
 		
 		itemParamMapper.insert(itemParam);
 
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 	//分页查询
@@ -121,7 +121,7 @@ public class ItemParamServiceImpl implements ItemParamService{
 
 
 	@Override
-	public TaotaoResult deleteParam(String ids) {
+	public MallResult deleteParam(String ids) {
 		try {
 			String[] idsArray = ids.split(",");
 			List<Long> values = new ArrayList<Long>();
@@ -138,7 +138,7 @@ public class ItemParamServiceImpl implements ItemParamService{
 			e.printStackTrace();
 			return null;
 		}
-		return TaotaoResult.ok();
+		return MallResult.ok();
 	}
 
 }

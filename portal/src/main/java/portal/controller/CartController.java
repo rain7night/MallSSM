@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import portal.pojo.CartItem;
 import portal.service.CartService;
 
@@ -27,7 +27,7 @@ public class CartController {
 	public String addCartItem(@PathVariable Long itemId,
 			@RequestParam(defaultValue="1") Integer num,
 			HttpServletRequest request, HttpServletResponse response) {
-		TaotaoResult result = cartService.addCartItem(itemId, num, request, response);
+		MallResult result = cartService.addCartItem(itemId, num, request, response);
 		return "redirect:/cart/success.html";
 
 	}

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import order.pojo.Order;
 import order.service.OrderService;
 
@@ -19,13 +19,13 @@ public class OrderController {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public TaotaoResult createOrder(@RequestBody Order  order){
+	public MallResult createOrder(@RequestBody Order  order){
 		try {
-			TaotaoResult result = orderService.createOrder(order, order.getOrderItems(), order.getOrderShipping());
+			MallResult result = orderService.createOrder(order, order.getOrderItems(), order.getOrderShipping());
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
 		
 	}

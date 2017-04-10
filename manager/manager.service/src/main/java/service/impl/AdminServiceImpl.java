@@ -1,7 +1,7 @@
 package service.impl;
 
 import common.utils.HttpClientUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import po.TbAdminUser;
@@ -30,7 +30,7 @@ public class AdminServiceImpl implements  AdminService{
 		try {
 			String json=HttpClientUtil.doGet(SSO_BASE_URL+SSO_USER_TOKEN+token);
 			//把json转换为taotaoresult
-			TaotaoResult  result=TaotaoResult.formatToPojo(json, TbAdminUser.class);
+			MallResult result= MallResult.formatToPojo(json, TbAdminUser.class);
 			if(result.getStatus()==200){
 				TbAdminUser  user=(TbAdminUser) result.getData();
 				return user;

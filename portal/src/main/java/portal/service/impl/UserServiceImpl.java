@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import common.utils.HttpClientUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbUser;
 import portal.service.UserService;
 
@@ -33,7 +33,7 @@ public class UserServiceImpl implements  UserService{
 		try {
 			String json=HttpClientUtil.doGet(SSO_BASE_URL+SSO_USER_TOKEN+token);
 			//把json转换为taotaoresult
-			TaotaoResult  result=TaotaoResult.formatToPojo(json, TbUser.class);
+			MallResult result= MallResult.formatToPojo(json, TbUser.class);
 			if(result.getStatus()==200){
 				TbUser  user=(TbUser) result.getData();
 				return user;

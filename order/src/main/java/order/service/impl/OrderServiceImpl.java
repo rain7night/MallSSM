@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbOrderItemMapper;
 import mapper.TbOrderMapper;
 import mapper.TbOrderShippingMapper;
@@ -41,8 +41,8 @@ public class OrderServiceImpl implements OrderService {
 	private String ORDER_DETAIL_GEN_KEY;
 	
 	@Override
-	public TaotaoResult createOrder(TbOrder order, List<TbOrderItem> itemList,
-			TbOrderShipping orderShipping) {
+	public MallResult createOrder(TbOrder order, List<TbOrderItem> itemList,
+                                  TbOrderShipping orderShipping) {
 		
 		//向订单表中插入记录
 		String string = jedisClient.get(ORDER_GEN_KEY);
@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
 		orderShipping.setCreated(date);
 		orderShippingMapper.insert(orderShipping);
 		
-		return TaotaoResult.ok(orderId);
+		return MallResult.ok(orderId);
 	}
 
 }

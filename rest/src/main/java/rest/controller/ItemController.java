@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import rest.service.ItemService;
 
 @Controller
@@ -20,22 +20,22 @@ public class ItemController {
 
 	@RequestMapping("/info/{itemId}")
 	@ResponseBody
-	public TaotaoResult getItemBaseInfo(@PathVariable Long itemId){
-		TaotaoResult result = itemService.getItemBaseInfo(itemId);
+	public MallResult getItemBaseInfo(@PathVariable Long itemId){
+		MallResult result = itemService.getItemBaseInfo(itemId);
 		return result;
 	}
 	
 	@RequestMapping("/desc/{itemId}")
 	@ResponseBody
-	public TaotaoResult getItemDesc(@PathVariable Long itemId){
-		TaotaoResult result = itemService.getItemDesc(itemId);
+	public MallResult getItemDesc(@PathVariable Long itemId){
+		MallResult result = itemService.getItemDesc(itemId);
 		return result;
 	}
 	
 	@RequestMapping("/param/{itemId}")
 	@ResponseBody
-	public TaotaoResult getItemParam(@PathVariable Long itemId){
-		TaotaoResult result = itemService.getItemParam(itemId);
+	public MallResult getItemParam(@PathVariable Long itemId){
+		MallResult result = itemService.getItemParam(itemId);
 		return result;
 	}
 

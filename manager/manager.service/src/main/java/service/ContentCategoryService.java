@@ -1,7 +1,7 @@
 package service;
 
 import common.pojo.ContentCatTreeNode;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface  ContentCategoryService {
 	
 	List<ContentCatTreeNode>  getCategoryList(long parentId);
 	
-	TaotaoResult  insertContentCategory(long parentId, String name);
+	MallResult insertContentCategory(long parentId, String name);
 
 	/**
 	 * 删除节点
@@ -18,7 +18,7 @@ public interface  ContentCategoryService {
 	 * @param id
 	 * @return
 	 */
-	TaotaoResult deleteContentCategory(Long parentId, Long id);
+	MallResult deleteContentCategory(Long parentId, Long id);
 
 	/**
 	 * 更新节点信息
@@ -27,7 +27,7 @@ public interface  ContentCategoryService {
 	 * @param name
 	 * @return
 	 */
-	TaotaoResult updateContentCategory(Long id, String name);
+	MallResult updateContentCategory(Long id, String name);
 
 	
 

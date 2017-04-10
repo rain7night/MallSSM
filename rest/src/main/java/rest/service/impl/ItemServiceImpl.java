@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import common.utils.JsonUtils;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import mapper.TbItemDescMapper;
 import mapper.TbItemMapper;
 import mapper.TbItemParamItemMapper;
 import po.TbItem;
 import po.TbItemDesc;
-import po.TbItemParam;
 import po.TbItemParamItem;
 import po.TbItemParamItemExample;
 import po.TbItemParamItemExample.Criteria;
@@ -46,7 +45,7 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemParamItemMapper itemParamItemMapper;
 
 	@Override
-	public TaotaoResult getItemBaseInfo(long itemId) {
+	public MallResult getItemBaseInfo(long itemId) {
 		// 添加缓存
 		// 从缓存中取商品信息
 		try {
@@ -55,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
 			if (!StringUtils.isBlank(json)) {
 				// 把json转换为pojo
 				TbItem item = JsonUtils.jsonToPojo(json, TbItem.class);
-				return TaotaoResult.ok(item);
+				return MallResult.ok(item);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -73,11 +72,11 @@ public class ItemServiceImpl implements ItemService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return TaotaoResult.ok(item);
+		return MallResult.ok(item);
 	}
 
 	@Override
-	public TaotaoResult getItemDesc(long itemId) {
+	public MallResult getItemDesc(long itemId) {
 		// 添加缓存
 		// 从缓存中取商品信息
 		try {
@@ -87,7 +86,7 @@ public class ItemServiceImpl implements ItemService {
 				// 把json转换为pojo
 				TbItemDesc itemDesc = JsonUtils.jsonToPojo(json,
 						TbItemDesc.class);
-				return TaotaoResult.ok(itemDesc);
+				return MallResult.ok(itemDesc);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -105,12 +104,12 @@ public class ItemServiceImpl implements ItemService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return TaotaoResult.ok(itemDesc);
+		return MallResult.ok(itemDesc);
 	}
 
 	// 根据id查询规格参数
 	@Override
-	public TaotaoResult getItemParam(long itemId) {
+	public MallResult getItemParam(long itemId) {
 
 		// 从缓存中取商品信息
 		try {
@@ -120,7 +119,7 @@ public class ItemServiceImpl implements ItemService {
 				// 把json转换为pojo
 				TbItemParamItem paramItem = JsonUtils.jsonToPojo(json,
 						TbItemParamItem.class);
-				return TaotaoResult.ok(paramItem);
+				return MallResult.ok(paramItem);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -148,10 +147,10 @@ public class ItemServiceImpl implements ItemService {
 				e.printStackTrace();
 			}
 
-			return TaotaoResult.ok(paramItem);
+			return MallResult.ok(paramItem);
 		}
 
-		return TaotaoResult.build(400, "没有该商品规格信息");
+		return MallResult.build(400, "没有该商品规格信息");
 
 	}
 

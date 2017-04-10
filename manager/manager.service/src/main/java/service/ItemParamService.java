@@ -1,14 +1,14 @@
 package service;
 
 import common.pojo.EUDResult;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbItemParam;
 import po.TbItemParamItem;
 
 public interface ItemParamService {
 	
-	TaotaoResult getItemParamByCid(long cid);
-	TaotaoResult insertItemParam(TbItemParam itemParam);
+	MallResult getItemParamByCid(long cid);
+	MallResult insertItemParam(TbItemParam itemParam);
 	
 	EUDResult getItemList(int page, int rows);
 	
@@ -16,6 +16,6 @@ public interface ItemParamService {
 	/*
 	 * 删除
 	 */
-	TaotaoResult deleteParam(String ids);
+	MallResult deleteParam(String ids);
 	
 }

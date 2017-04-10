@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import common.utils.HttpClientUtil;
 import common.utils.JsonUtils;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import portal.pojo.Order;
 import portal.service.OrderService;
 
@@ -22,10 +22,10 @@ public class OrderServiceImpl implements OrderService{
 		//调用order的服务
 		String json = HttpClientUtil.doPostJson(ORDER_BASE_URL+ORDER_CREATE_URL, JsonUtils.objectToJson(order));
 		
-		TaotaoResult taotaoResult = TaotaoResult.format(json);
+		MallResult mallResult = MallResult.format(json);
 		
-		if(taotaoResult.getStatus()==200){
-			Object orderId = taotaoResult.getData();
+		if(mallResult.getStatus()==200){
+			Object orderId = mallResult.getData();
 			return orderId.toString();
 		}
 		return "";

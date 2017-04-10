@@ -1,13 +1,13 @@
 package rest.service;
 
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 
 public interface ItemService {
 	
-	TaotaoResult  getItemBaseInfo(long itemId);
-	TaotaoResult  getItemDesc(long itemId);
+	MallResult getItemBaseInfo(long itemId);
+	MallResult getItemDesc(long itemId);
 	
-	TaotaoResult getItemParam(long itemId);
+	MallResult getItemParam(long itemId);
 	
 	
 }

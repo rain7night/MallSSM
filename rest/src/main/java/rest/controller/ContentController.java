@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.utils.ExceptionUtil;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbContent;
 import rest.service.ContentService;
 
@@ -23,13 +23,13 @@ public class ContentController {
 	
 	@RequestMapping("/list/{cid}")
 	@ResponseBody
-	public TaotaoResult getContentList(@PathVariable Long cid){
+	public MallResult getContentList(@PathVariable Long cid){
 		try {
 			List<TbContent> list = contentService.getContentList(cid);
-			return TaotaoResult.ok(list);
+			return MallResult.ok(list);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
 		}		
 	}
 	

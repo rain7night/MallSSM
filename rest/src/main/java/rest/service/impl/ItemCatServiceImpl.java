@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import common.utils.JsonUtils;
-import common.utils.TaotaoResult;
 import mapper.TbItemCatMapper;
-import po.TbItem;
 import po.TbItemCat;
 import po.TbItemCatExample;
 import po.TbItemCatExample.Criteria;

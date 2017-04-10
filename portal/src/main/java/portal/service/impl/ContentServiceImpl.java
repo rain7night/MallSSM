@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import common.utils.HttpClientUtil;
 import common.utils.JsonUtils;
-import common.utils.TaotaoResult;
+import common.utils.MallResult;
 import po.TbContent;
 import portal.service.ContentService;
 
@@ -29,8 +29,8 @@ public class ContentServiceImpl implements ContentService{
 	public String getContentList() {
 		String result = HttpClientUtil.doGet(REST_BASE_URL + REST_INDEX_AD_URL);
 		//把json数据转换成对象
-		TaotaoResult taotaoResult = TaotaoResult.formatToList(result, TbContent.class);
-		List<TbContent>  list = (List<TbContent>) taotaoResult.getData();
+		MallResult mallResult = MallResult.formatToList(result, TbContent.class);
+		List<TbContent>  list = (List<TbContent>) mallResult.getData();
 		List<Map> resultList=new ArrayList<>();
 		
 		try {
