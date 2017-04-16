@@ -16,6 +16,9 @@ public class PageController {
 	
 	@RequestMapping("/login")
 	public String showLogin(String redirect,Model model){
+		if(redirect==null){
+			redirect = "http://mvnrepository.com/";
+		}
 		model.addAttribute("redirect",redirect);
 		return "login";
 	}

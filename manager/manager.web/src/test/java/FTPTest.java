@@ -12,7 +12,7 @@ public class FTPTest {
 
 		try {
 			FileInputStream in=new FileInputStream(new File("D:\\Books\\yh.jpg"));
-			boolean flag = FtpUtil.uploadFile("192.168.186.130", 21, "kevin", "handsome", "/home/kevin/images","/2017-04-13", "yh.jpg", in);
+			boolean flag = FtpUtil.uploadFile("192.168.186.128", 21, "kevin", "handsome", "/home/kevin/images","/2017-04-13", "yh.jpg", in);
 			System.out.println(flag);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

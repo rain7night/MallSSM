@@ -44,6 +44,7 @@ public class FtpUtil {
 			reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply)) {
 				ftp.disconnect();
+				System.out.println("postive completion response failure, replay: "+ reply);
 				return result;
 			}
 			//切换到上传目录
@@ -56,6 +57,7 @@ public class FtpUtil {
 					tempPath += "/" + dir;
 					if (!ftp.changeWorkingDirectory(tempPath)) {
 						if (!ftp.makeDirectory(tempPath)) {
+							System.out.println("makeDirectory failure, tempPath: "+ tempPath);
 							return result;
 						} else {
 							ftp.changeWorkingDirectory(tempPath);
@@ -67,6 +69,7 @@ public class FtpUtil {
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			//上传文件
 			if (!ftp.storeFile(filename, input)) {
+				System.out.println("storeFile failure, filename: "+ filename);
 				return result;
 			}
 			input.close();

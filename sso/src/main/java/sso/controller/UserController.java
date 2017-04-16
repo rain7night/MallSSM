@@ -97,7 +97,6 @@ public class UserController {
 	}
 	
 	//接收token调用service返回用户信息 
-	
 	@RequestMapping("/token/{token}")
 	@ResponseBody
 	public Object getUserByToken(@PathVariable  String token,String callback){

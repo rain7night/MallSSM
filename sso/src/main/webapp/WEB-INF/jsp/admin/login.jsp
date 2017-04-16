@@ -79,7 +79,7 @@
 					if (data.status == 200) {
 						//alert("登录成功！");
 						if (redirectUrl == "") {
-							location.href = "http://manager.tianfang1314.cn";
+							location.href = "https://www.baidu.com";
 						} else {
 							location.href = redirectUrl;
 						}

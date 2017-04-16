@@ -79,7 +79,7 @@
 					if (data.status == 200) {
 						//alert("登录成功！");
 						if (redirectUrl == "") {
-							location.href = "http://taotao.tianfang1314.cn";
+							location.href = "http://www.sina.com.cn";
 						} else {
 							location.href = redirectUrl;
 						}

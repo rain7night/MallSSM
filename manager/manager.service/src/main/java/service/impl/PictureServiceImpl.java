@@ -38,7 +38,6 @@ public class PictureServiceImpl implements PictureService{
 			// 取原始文件名
 			String oldName = uploadFile.getOriginalFilename();
 			// 生成新文件名
-//		UUID.randomUUID();
 			String newName = IDUtils.genImageName();
 			newName = newName + oldName.substring(oldName.lastIndexOf("."));
 			// 图片上传

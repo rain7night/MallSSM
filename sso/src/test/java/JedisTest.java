@@ -12,28 +12,28 @@ import redis.clients.jedis.JedisPool;
 public class JedisTest {
 	
 	//单机
-//	@Test
-//	public void tets1(){
-//		//创建一个jedis的对象
-//		//调用jedis对象的方法，方法名称和redis的命令一样
-//		Jedis jedis=new Jedis("192.168.186.128",6379);
-//		jedis.set("key1", "jedis test");
-//		String string=jedis.get("key1");
-//		System.out.println(string);
-//		jedis.close();
-//	}
-	
-	//使用连接池
 	@Test
-	public void test2(){
-		//创建jedis连接池
-		JedisPool pool=new JedisPool("192.168.186.128",6379);
-		//从连接池中获得jedis对象
-		Jedis jedis=pool.getResource();
+	public void tets1(){
+		//创建一个jedis的对象
+		//调用jedis对象的方法，方法名称和redis的命令一样
+		Jedis jedis=new Jedis("192.168.186.128",6379);
+		jedis.set("key1", "jedis test");
 		String string=jedis.get("key1");
 		System.out.println(string);
 		jedis.close();
 	}
+	
+	//使用连接池
+//	@Test
+//	public void test2(){
+//		//创建jedis连接池
+//		JedisPool pool=new JedisPool("192.168.186.128",6379);
+//		//从连接池中获得jedis对象
+//		Jedis jedis=pool.getResource();
+//		String string=jedis.get("key1");
+//		System.out.println(string);
+//		jedis.close();
+//	}
 	
 	
 	//集群
