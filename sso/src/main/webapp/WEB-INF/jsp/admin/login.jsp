@@ -77,9 +77,10 @@
 			doLogin:function() {
 				$.post("/user/admin/login", $("#formlogin").serialize(),function(data){
 					if (data.status == 200) {
-						//alert("登录成功！");
+						alert("登录成功！");
 						if (redirectUrl == "") {
-							location.href = "https://www.baidu.com";
+						    //跳转到管理平台
+							location.href = "http://localhost:9080/index";
 						} else {
 							location.href = redirectUrl;
 						}

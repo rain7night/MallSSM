@@ -30,6 +30,6 @@
 	<!-- 切面 -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* cn.tf.taotao.order.service.*.*(..))"/>
+			pointcut="execution(* order.service.*.*(..))"/>
 	</aop:config>
 </beans>

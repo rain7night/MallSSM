@@ -14,7 +14,7 @@
 <body>
 <div class="w" id="logo">
     <div>
-    	<a href="http://taotao.tianfang1314.cn ">
+    	<a href="https://www.taobao.com">
     		<img src="/images/taotao-logo.gif" alt="淘淘商城" width="170" height="60"/>
     	</a> <b></b>
     </div>
