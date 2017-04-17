@@ -36,10 +36,8 @@ public class ContentServiceImpl implements  ContentService{
 	
 	@Override
 	public List<TbContent> getContentList(long contentCid) {
-		
-	
+
 		//从缓存中取内容
-		
 		try{
 			//String result=jedisClientCluster.hget(INDEX_CONTENT_REDIS_KEY, contentCid+"");
 			String result=jedisClient.hget(INDEX_CONTENT_REDIS_KEY, contentCid+"");
@@ -53,7 +51,7 @@ public class ContentServiceImpl implements  ContentService{
 			e.printStackTrace();
 		}
 
-		
+		//如果缓存中没有，则从数据库中查
 		TbContentExample example=new TbContentExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andCategoryIdEqualTo(contentCid);

@@ -10,6 +10,12 @@ insert into tb_item
 values
 (1,'123t','ppp',110,10,'bell',null,11,1,sysdate(),sysdate());
 
+insert into tb_content (id,category_id,title,sub_title,title_desc,url,pic,pic2,created,updated,content)
+VALUES
+(1,1,'NewContent','h','category test','http://123.com',null,null,sysdate(),sysdate(),'hello cat!');
+
+
+
 
 
 
