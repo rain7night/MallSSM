@@ -14,7 +14,10 @@ insert into tb_content (id,category_id,title,sub_title,title_desc,url,pic,pic2,c
 VALUES
 (1,1,'NewContent','h','category test','http://123.com',null,null,sysdate(),sysdate(),'hello cat!');
 
-
+insert into tb_content_category
+(id,parent_id,name,status,sort_order,is_parent,created,updated)
+VALUES
+(1,0,'cat1',1,1,1,sysdate(),sysdate());
 
 
 
