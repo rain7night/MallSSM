@@ -1,2 +1,1 @@
-
-<% response.sendRedirect("/page/login"); %>
+<% response.sendRedirect("/sso/page/login"); %>

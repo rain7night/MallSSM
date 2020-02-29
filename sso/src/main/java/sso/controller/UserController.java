@@ -20,129 +20,129 @@ import sso.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
-	@Autowired
-	private UserService userService;
-	
-	
-	@RequestMapping("/check/{param}/{type}")
-	@ResponseBody
-	public Object checkData(@PathVariable String param, @PathVariable Integer type, String callback) {
-		
-		MallResult result = null;
-		
-		//参数有效性校验
-		if (StringUtils.isBlank(param)) {
-			result = MallResult.build(400, "校验内容不能为空");
-		}
-		if (type == null) {
-			result = MallResult.build(400, "校验内容类型不能为空");
-		}
-		if (type != 1 && type != 2 && type != 3 ) {
-			result = MallResult.build(400, "校验内容类型错误");
-		}
-		//校验出错
-		if (null != result) {
-			if (null != callback) {
-				MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
-				mappingJacksonValue.setJsonpFunction(callback);
-				return mappingJacksonValue;
-			} else {
-				return result; 
-			}
-		}
-		//调用服务
-		try {
-			result = userService.checkData(param, type);
-			
-		} catch (Exception e) {
-			result = MallResult.build(500, ExceptionUtil.getStackTrace(e));
-		}
-		
-		if (null != callback) {
-			MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
-			mappingJacksonValue.setJsonpFunction(callback);
-			return mappingJacksonValue;
-		} else {
-			return result; 
-		}
-	}
-	
-	
-	//创建用户
-	@RequestMapping(value="/register",method=RequestMethod.POST)
-	@ResponseBody
-	public MallResult createUser(TbUser user){
-		try {
-			MallResult result = userService.createUser(user);
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
-		}
-	}
-	
-	//接收表单，包含用户名和密码
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	@ResponseBody
-	public MallResult userLogin(String username, String password,
-                                HttpServletRequest  request, HttpServletResponse response){
-		try {
-			MallResult result = userService.userLogin(username, password,request,response);
-			return result;
-		} catch (Exception e) {	
-			e.printStackTrace();
-			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
-		}
-	}
-	
-	//接收token调用service返回用户信息 
-	@RequestMapping("/token/{token}")
-	@ResponseBody
-	public Object getUserByToken(@PathVariable  String token,String callback){
-		
-		MallResult result=null;
-		
-		try {
-			result = userService.getUserByToken(token);
-			
-		} catch (Exception e) {	
-			e.printStackTrace();
-			return MallResult.build(500, ExceptionUtil.getStackTrace(e));
-		}
-		
-		//判断是否为json调用
-		if(StringUtils.isBlank(callback)){
-			return result;
-		}else{
-			MappingJacksonValue  mappingJacksonValue=new MappingJacksonValue(result);
-			mappingJacksonValue.setJsonpFunction(callback);
-			return mappingJacksonValue;
-		}
-	}
-	
-	//退出登录
-	@RequestMapping("/logout/{token}")
-	@ResponseBody
-	public Object userLogout(@PathVariable String token, String callback) {
-		MallResult result = null;
-		try {
-			result = userService.userLogout(token);
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = MallResult.build(500, ExceptionUtil.getStackTrace(e));
-		}
-		
 
-		if (StringUtils.isBlank(callback)) {
-			return result;
-		} else {
-			MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(
-					result);
-			mappingJacksonValue.setJsonpFunction(callback);
-			return mappingJacksonValue;
-		}
-	}
-	
+    @Autowired
+    private UserService userService;
+
+
+    @RequestMapping("/check/{param}/{type}")
+    @ResponseBody
+    public Object checkData(@PathVariable String param, @PathVariable Integer type, String callback) {
+
+        MallResult result = null;
+
+        //参数有效性校验
+        if (StringUtils.isBlank(param)) {
+            result = MallResult.build(400, "校验内容不能为空");
+        }
+        if (type == null) {
+            result = MallResult.build(400, "校验内容类型不能为空");
+        }
+        if (type != 1 && type != 2 && type != 3) {
+            result = MallResult.build(400, "校验内容类型错误");
+        }
+        //校验出错
+        if (null != result) {
+            if (null != callback) {
+                MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
+                mappingJacksonValue.setJsonpFunction(callback);
+                return mappingJacksonValue;
+            } else {
+                return result;
+            }
+        }
+        //调用服务
+        try {
+            result = userService.checkData(param, type);
+
+        } catch (Exception e) {
+            result = MallResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+
+        if (null != callback) {
+            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
+            mappingJacksonValue.setJsonpFunction(callback);
+            return mappingJacksonValue;
+        } else {
+            return result;
+        }
+    }
+
+
+    //创建用户
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public MallResult createUser(TbUser user) {
+        try {
+            MallResult result = userService.createUser(user);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MallResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+    }
+
+    //接收表单，包含用户名和密码
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public MallResult userLogin(String username, String password,
+                                HttpServletRequest request, HttpServletResponse response) {
+        try {
+            MallResult result = userService.userLogin(username, password, request, response);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MallResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+    }
+
+    //接收token调用service返回用户信息
+    @RequestMapping("/token/{token}")
+    @ResponseBody
+    public Object getUserByToken(@PathVariable String token, String callback) {
+
+        MallResult result = null;
+
+        try {
+            result = userService.getUserByToken(token);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MallResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+
+        //判断是否为json调用
+        if (StringUtils.isBlank(callback)) {
+            return result;
+        } else {
+            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
+            mappingJacksonValue.setJsonpFunction(callback);
+            return mappingJacksonValue;
+        }
+    }
+
+    //退出登录
+    @RequestMapping("/logout/{token}")
+    @ResponseBody
+    public Object userLogout(@PathVariable String token, String callback) {
+        MallResult result = null;
+        try {
+            result = userService.userLogout(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = MallResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+
+
+        if (StringUtils.isBlank(callback)) {
+            return result;
+        } else {
+            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(
+                    result);
+            mappingJacksonValue.setJsonpFunction(callback);
+            return mappingJacksonValue;
+        }
+    }
+
 }
 
